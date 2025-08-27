@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm'; //! Mysql Bilgileri
-import { AdminUsersController } from './admin_users/admin_users.controller'; //! User Controller
-import { AdminUser  } from './admin_users/admin_users.entity'; //! Entity Oluşturuldu
+import { UsersController } from './users/users.controller'; //! User Controller
+import { Users } from './users/user.entity'; //! Entity Oluşturuldu
 
 @Module({
   imports: [
@@ -11,13 +11,13 @@ import { AdminUser  } from './admin_users/admin_users.entity'; //! Entity Oluşt
       port: 3306,
       username: 'root',
       password: '', // MySQL şifren
-      database: 'areonx_dev_mysql',  // Bağlanmak istediğin DB
-      entities: [AdminUser ],
-      synchronize: true,    // Geliştirme için, DB tablolarını otomatik oluşturur
+      database: 'test',  // Bağlanmak istediğin DB
+      entities: [Users ],
+      synchronize: false,    // Geliştirme için, DB tablolarını otomatik oluşturma K
     }),
-    TypeOrmModule.forFeature([AdminUser]),
+    TypeOrmModule.forFeature([Users]),
   ],
-  controllers: [AdminUsersController],
+  controllers: [UsersController],
   providers: [],
 })
 export class AppModule {} 
