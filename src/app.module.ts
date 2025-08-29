@@ -7,13 +7,13 @@ import { Users } from './users/user.entity'; //! Entity Oluşturuldu
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: '', // MySQL şifren
-      database: 'test',  // Bağlanmak istediğin DB
+      host: process.env.DB_HOST || 'localhost',
+      port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : 3306,
+      username: process.env.DB_USERNAME || 'root',
+      password: process.env.DB_PASSWORD || '',
+      database: process.env.DB_DATABASE || 'areonx_test',
       entities: [Users ],
-      synchronize: false,    // Geliştirme için, DB tablolarını otomatik oluşturma K
+      synchronize: false,    // Geliştirme için, DB tablolarını otomatik oluşturma Kapalı
     }),
     TypeOrmModule.forFeature([Users]),
   ],
