@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Query, UsePipes, ValidationPipe, Param, Delete, Put, NotFoundException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Query, UsePipes, ValidationPipe, Param } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Like } from 'typeorm';
 import { Users } from './user.entity';
@@ -91,7 +91,7 @@ export class UsersController {
     const updatePayload = {
       ...dto,
       isUpdated: true, // Bu kolonu Entity'nize eklemeniz gerekir
-      
+
     };
 
     const updatedUser = this.userRepository.merge(userToUpdate, updatePayload);
@@ -113,7 +113,7 @@ export class UsersController {
 
     // Etkilenen satır sayısını kontrol et
     if (deleteResult.affected === 0) { status = 0; }
-    
+
     return {
       message: status == 1 ? `ID'si ${id} olan kullanıcı başarıyla silindi.` : `ID'si ${id} olan kullanıcı bulunamadı.`,
       status: status == 1 ? 'success' : 'error'
